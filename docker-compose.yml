@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+
+  mongodb-crud_app:
+    build: ./
+    container_name: mongodb-crud_app
+    tty: true
+    ports:
+      - 3000:3000
+    environment:
+      TZ: America/Hermosillo
+    volumes:
+      - ./:/home/node/app
+      - /home/node/app/node_modules
+    command: sh -c "npm run dev"
+
+  mongodb-crud_mongo:
+    image: mongo:7.0.6
+    restart: always
+    container_name: mongodb-crud_mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      TZ: America/Hermosillo
+    volumes:
+      - ./DB/mongo:/data
+
+  mongodb-crud_mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    restart: always
+    container_name: mongodb-crud_mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongodb-crud_mongo:27017/
+      TZ: America/Hermosillo

@@ -1,0 +1,15 @@
+meta {
+  name: GET_ONE
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{http}}://{{host}}/api/v1/usuarios/65f78c8ed68c966f49600265
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt}}
+}

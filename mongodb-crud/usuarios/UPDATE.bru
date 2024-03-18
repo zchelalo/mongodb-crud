@@ -1,0 +1,23 @@
+meta {
+  name: UPDATE
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{http}}://{{host}}/api/v1/usuarios/65f7a07b2eca55ff9591b816
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt}}
+}
+
+body:json {
+  {
+    "nombre": "Erick",
+    "correo": "eduardosaavedra687@gmail.com",
+    "rol": "admin"
+  }
+}

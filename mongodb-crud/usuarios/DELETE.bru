@@ -1,0 +1,15 @@
+meta {
+  name: DELETE
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{http}}://{{host}}/api/v1/usuarios/65f7a07b2eca55ff9591b816
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt}}
+}
